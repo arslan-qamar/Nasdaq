@@ -28,14 +28,17 @@ def getListings():
     
     listings = json.loads(jsonResult)    
     total_Listings = listings['count']
-    listings_Fetched = len(listings['data'])
+    
     data.extend(listings['data'])
-
+    listings_Fetched = 0
+    listings_Fetched += len(listings['data'])
+    
     while listings_Fetched < total_Listings and pageIndex < total_Listings / pageSize:
         pageIndex += 1
         jsonResult = getPageData(URL.format(page = pageIndex, pageSize = pageSize ))    
         listings = json.loads(jsonResult)    
         data.extend(listings['data'])
+        listings_Fetched += len(listings['data'])
         print(f'{listings_Fetched} listings fetched. Current Page Index : {pageIndex}')
         
 
