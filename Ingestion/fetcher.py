@@ -36,6 +36,7 @@ def getListings():
         jsonResult = getPageData(URL.format(page = pageIndex, pageSize = pageSize ))    
         listings = json.loads(jsonResult)    
         data.extend(listings['data'])
+        print(f'{listings_Fetched} listings fetched. Current Page Index : {pageIndex}')
         
 
     return data
