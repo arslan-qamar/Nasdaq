@@ -36,7 +36,7 @@ def getListings():
         jsonResult = getPageData(URL.format(page = pageIndex, pageSize = pageSize ))    
         listings = json.loads(jsonResult)    
         data.extend(listings['data'])
-        break
+        
 
     return data
 
