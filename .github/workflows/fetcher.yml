@@ -6,11 +6,9 @@ on:
     branches: [ main ]
   schedule:
     - cron: "0 */4 * * *"
-
 jobs:
   Fetch_Nasdaq_Listings:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.8
