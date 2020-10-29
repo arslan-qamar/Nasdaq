@@ -39,7 +39,7 @@ def getListings():
         listings = json.loads(jsonResult)    
         data.extend(listings['data'])
         listings_Fetched += len(listings['data'])
-        print(f'{listings_Fetched} listings fetched. Current Page Index : {pageIndex}')
+        print(f'{listings_Fetched} listings fetched. Current Page Index : {pageIndex}. Total Listing : {total_Listings}')
         
 
     return data
