@@ -12,7 +12,7 @@ def storeData(data):
         filter = {
             '_id': d['ticker']
             }
-            
+        d['Last_Updated_On'] = datetime.utcnow()    
         upsert_data = d      
 
         ops.append(UpdateOne(filter,
