@@ -22,8 +22,8 @@ def storeData(data):
             },
             True))
 
-        print(upsert_data)        
-    
+             
+    print(f'Bulk uploading {len(ops)} Nasdaq listings')
     collection.bulk_write(ops)
         
 def getNewListings(startDate):
