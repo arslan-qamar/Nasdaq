@@ -18,7 +18,8 @@ for new_listing in new_listings:
     Market Cap Group : {new_listing['marketCapGroup']} 
     Sector Name : {new_listing['sectorName']} 
     Discovered at : {new_listing['Discovered_At'].strftime('%d %b %Y %H:%M %p')}      
-    Price 7 Days : {new_listing['priceChartSevenDay']}
+    Price 7 Days : 
+    {new_listing['priceChartSevenDay']}
     """
     msg_sent = telegram_bot_sendtext(message)
     print(msg_sent)
