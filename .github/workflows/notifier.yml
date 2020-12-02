@@ -1,6 +1,5 @@
 # This workflow will install Python dependencies, run Nasdaq New Listings Notifier script to notify me when a new listing is found today.
 name: Nasdaq Listings Notifier
-
 on:
   push:
     branches: [ main ]
