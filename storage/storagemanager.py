@@ -9,18 +9,19 @@ def storeData(data):
 
     ops = []
     for d in data:
-        filter = {
-            '_id': d['ticker']
-            }
-        d['Last_Updated_On'] = datetime.utcnow()    
-        upsert_data = d      
+        if d:
+            filter = {
+                '_id': d['ticker']
+                }
+            d['Last_Updated_On'] = datetime.utcnow()    
+            upsert_data = d      
 
-        ops.append(UpdateOne(filter,
-            {
-                "$set": upsert_data,
-                "$setOnInsert": { "Discovered_At": datetime.utcnow() }
-            },
-            True))
+            ops.append(UpdateOne(filter,
+                {
+                    "$set": upsert_data,
+                    "$setOnInsert": { "Discovered_At": datetime.utcnow() }
+                },
+                True))
 
              
     print(f'Bulk uploading {len(ops)} Nasdaq listings')
