@@ -1,0 +1,35 @@
+# This workflow will install Python dependencies, run Nasdaq New Listings Notifier script to notify me when a new listing is found today.
+name: Nasdaq Listings Notifier
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: "0 */5 * * *"
+
+jobs:
+  Notify_Nasdaq_Listings:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8   
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip       
+        if [ -f ./Notifier/requirements.txt ]; then pip install -r ./Notifier/requirements.txt; fi 
+    - name: Setup DB Connection Environment Variable
+      run: |
+        echo "nasdaq_db=${{ secrets.nasdaq_prod_db }}" >> $GITHUB_ENV
+    - name: Setup Telegram Bot Token Environment Variable
+      run: |
+        echo "bot_token=${{ secrets.bot_token }}" >> $GITHUB_ENV
+    - name: Setup Telegram Bot Chat ID Environment Variable
+      run: |
+        echo "bot_chatid=${{ secrets.bot_chatID }}" >> $GITHUB_ENV
+    - name: Notify Telegram For New Listings
+      run: |
+        python3 start_notifier.py
