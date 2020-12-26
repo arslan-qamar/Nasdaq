@@ -11,7 +11,7 @@ def storeData(data):
     for d in data:
         if d:
             filter = {
-                '_id': d['ticker']
+                '_id': d['symbol']
                 }
             d['Last_Updated_On'] = datetime.utcnow()    
             upsert_data = d      

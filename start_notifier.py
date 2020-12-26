@@ -11,15 +11,16 @@ new_listings = getNewListings(datetime.utcnow().replace(hour=0, minute=0, second
 for new_listing in new_listings:
 
     message =  f"""
-    New Nasdaq Listing : <b>{new_listing['ticker']}</b>    
-    Company : <b>{new_listing['company']}</b> 
-    Analyst Consensus : <b>{new_listing['analystConsensus']}</b> 
-    Market Cap : <b>{new_listing['marketCap']/1000000} Million</b> 
-    Market Cap Group : {new_listing['marketCapGroup']} 
-    Sector Name : {new_listing['sectorName']} 
-    Discovered at : {new_listing['Discovered_At'].strftime('%d %b %Y %H:%M %p')}      
-    Price 7 Days : 
-    {new_listing['priceChartSevenDay']}
+    New Nasdaq Listing : <b>{new_listing['symbol']}</b>    
+    Company : <b>{new_listing['name']}</b> 
+    Last Price : <b>{new_listing['lastsale']}</b>    
+    Market Cap : <b>{float(new_listing['marketCap'])/1000000} Million</b>
+    Net Change : {new_listing['netchange']}
+    Percentage Change : {new_listing['pctchange']}
+    Industry : {new_listing['industry']} 
+    Sector Name : {new_listing['sector']} 
+    IPO Year : {new_listing['ipoyear']} 
+    Discovered at : {new_listing['Discovered_At'].strftime('%d %b %Y %H:%M %p')}
     """
     msg_sent = telegram_bot_sendtext(message)
     print(msg_sent)
