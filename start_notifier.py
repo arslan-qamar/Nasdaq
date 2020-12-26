@@ -4,8 +4,6 @@ from mongohelper import *
 from storage.storagemanager import *
 import urllib.parse
 
-
-
 new_listings = getNewListings(datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0))
 
 for new_listing in new_listings:
